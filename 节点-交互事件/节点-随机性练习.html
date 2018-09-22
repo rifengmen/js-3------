@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节点-随机性练习</title>
+
+    <style>
+
+.aaa {
+}
+
+    </style>
+
+</head>
+<body>
+
+<div class="box">
+    <span>内容</span>
+    <!--注释内容-->
+    <p>
+        <a href="#">我是段落</a>
+    </p>
+</div>
+
+</body>
+</html>
+
+<script>
+
+    console.log(window.document);
+    // DOM                    nodeName（节点名字）        nodeType（节点类型）          nodeValue（节点内容）
+    // 1.文档节点
+    // 2.元素节点             标签的大写                  1                             null
+    // 3.文本节点             #text                       3                            文本内容
+    // 4.属性节点
+    // 5.注释节点             #comment                    8                            注释内容
+
+
+    // 获取元素节点
+    let box = document.querySelector(".box");
+    console.log(box);
+    let span = document.querySelector("span");
+
+    // console.log(box.children);
+    //空格也是一个节点
+    // let boxs=box.childNodes[2];
+    // console.log(boxs);
+    // //父节点
+    // console.log(boxs.parentNode);
+    // //兄弟节点找的有文本有标签
+    // console.log(boxs.previousSibling);
+    // console.log(boxs.nextSibling);
+    // //下一个兄弟元素
+    // //如果有element的话找的就是标签
+    // console.log(boxs.nextElementSibling);
+    // console.log(boxs.previousElementSibling);
+
+
+    //       //属性节点
+    //       let res=box.childNodes;
+    // console.log(res);
+    // console.log(res[5].attributes);
+
+
+
+    // res.forEach((val,index)=>{
+
+    // 	// console.log(val);
+    // 	//可以输出注释 因为注释的nodeType为8
+    // 	if(val.nodeType===8){
+    // 		console.log(val);
+    // 	}
+    // })
+
+
+    // //操作节点的方法 增删改查
+    // // 给页面中添加新的元素节点
+    // //父元素 .createElement(“标签名”);
+    // let htag = document.createElement("h2");
+    // htag.innerHTML = "标签标题";
+    // //父元素.append(新元素)；给某个父元素的最后添加新元素
+    // box.appendChild(htag);
+    //
+    // //也是添加到父元素里面 位置是在span前面.insertBefore(新元素,要放在哪个元素前面)
+    // box.insertBefore(htag,span);
+
+    //整体把box移除
+    // box.remove();
+    //把htag移出
+    // htag.remove();
+
+    //替换
+    //把span元素替换为htag元素.replaceChild(新元素,旧元素);
+    // box.replaceChild(htag,span);
+
+    //复制克隆
+    // console.log(box.cloneNode(true));
+    // 如果是true复制所有子节点
+    //如果是false只复制本身
+
+
+    // //动态的创建三个div标签
+    // for(let i = 0;i < 3; i++){
+    //     let div = document.createElement("div");
+    //     div.style.width = "100px";
+    //     div.style.height = "100px";
+    //     div.style.background = "red";
+    //     box.appendChild(div);
+    // }
+
+    // //创建i个随机宽度的div在box中
+    // for(let i = 0;i < 50;i ++){
+    //     let div = document.createElement("div");
+    //     let widths = Math.round(Math.random()*200+200);
+    //     div.style.width = "30px";
+    //     div.style.height = widths+"px";
+    //     div.style.background = randomcolor();
+    //     div.style.border = "1px solid #000";
+    //     div.style.cssFloat = "left";
+    //     div.style.left = 10*i+"px";
+    //     box.appendChild(div);
+    //
+    // }
+    let t = setInterval(move,500);
+    function move(){
+        history.go(0);
+    }
+
+
+
+
+    // 取随机颜色
+    function randomcolor() {
+        let str = "rgb(";
+        for (let i = 0; i < 3;i ++) {
+            str += Math.round(Math.random()*255)+",";
+        }
+        str = str.slice(0,-1)+")";
+        return str;
+    }
+
+
+    //
+    for (let i = 0; i < 100; i++) {
+        let circle = document.createElement("div");
+        let widths = Math.round(Math.random()*200+100);
+        let maxlefts = innerWidth-widths;
+        let maxtops = innerHeight-widths;
+        let lefts = Math.round(Math.random()*maxlefts)
+        let tops = Math.round(Math.random()*maxtops);
+        // circle.style = "width:"+widths+"px;height:"widths+"px;background:"+randomcolor()+";border-radius:50%;position:absolute;top:"+tops+"px;left:"+lefts+"px";
+        // document.body.appendChild(circle);
+
+
+
+        // 模板字符串`字符串${变量名}字符串`
+        circle.style = `width:${widths}px;height:${widths}px;background:${randomcolor()};border-radius:50%;position:absolute;top:${tops}px;left:${lefts}px`;
+        document.body.appendChild(circle);
+
+    }
+
+
+
+
+
+
+</script>

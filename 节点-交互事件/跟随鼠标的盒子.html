@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跟随鼠标的盒子</title>
+    <style>
+        body {
+            position: relative;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background: #3ee3fb;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>
+
+<script>
+
+    let box = document.querySelector(".box");
+    let widths = innerWidth;
+    let heights = innerHeight;
+    let boxwidths = box.offsetWidth;
+    let boxheights = box.offsetHeight;
+    let maxwidths = widths-boxwidths;
+    let maxheights = heights-boxheights;
+    box.onmousedown = function (e) {
+        let dx = e.clientX;
+        let dy = e.clientY;
+        // console.log(dx, dy);
+        box.onmousemove = function (e) {
+            let mx = e.clientX;
+            let my = e.clientY;
+            console.log(mx, my);
+            let ox = mx - dx;
+            let oy = my - dy;
+            // console.log(ox, oy);
+            if (ox > maxwidths) {
+                ox = maxwidths;
+            };
+            if (ox < 0) {
+                ox = 0;
+            };
+            if (oy > maxheights) {
+                oy = maxheights;
+            };
+            if (oy < 0) {
+                oy = 0;
+            };
+            box.style.left = ox+"px";
+            box.style.top = oy+"px";
+
+        };
+    };
+    box.onmouseup = function () {
+        box.onmousemove = null;
+    }
+
+</script>

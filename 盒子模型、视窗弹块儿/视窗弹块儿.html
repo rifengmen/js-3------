@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>day03demo1</title>
+    <style type="text/css">
+
+        .box {
+            width: 300px;
+            height: 300px;
+            background-color: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+        }
+
+    </style>
+</head>
+<body>
+
+
+<div class="box"></div>
+
+
+
+</body>
+</html>
+
+
+<script>
+
+    let box = document.querySelector(".box");
+    let widths = window.innerWidth;
+    let heights = window.innerHeight;
+    let boxwidths = box.offsetWidth;
+    let boxheights = box.offsetHeight;
+    let maxwidths = widths-boxwidths;
+    let maxheights = heights- boxheights;
+    let t = setInterval(move,1);
+    let speedx = 1;
+    let speedy = 1;
+    console.log(box, widths, heights, boxwidths, boxheights, maxwidths, maxheights);
+
+    window.onresize = function () {
+        widths = window.innerWidth;
+        heights = window.innerHeight;
+    };
+
+    function move() {
+        let boxtop = box.offsetTop;
+        let boxleft = box.offsetLeft;
+        if ((boxtop+speedy)>maxheights) {
+            speedy*=-1;
+        }
+        if ((boxtop+speedy)<0) {
+            speedy*=-1
+        }
+        if ((boxleft+speedx)>maxwidths) {
+            speedx*=-1;
+        }
+        if ((boxleft+speedx)<0) {
+            speedx*=-1
+        }
+        box.style.top = (boxtop+speedy)+"px";
+        box.style.left = (boxleft+speedx)+"px";
+    }
+    box.onmouseover = function () {
+        clearInterval(t);
+    };
+    box.onmouseout = function () {
+        t = setInterval(move,1);
+    };
+    box.onclick = function () {
+        box.style.left = "-400px";
+    };
+
+
+
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>day03</title>
+    <style type="text/css">
+
+        .box {
+            width: 300px;
+            height: 300px;
+            background-color: red;
+            margin: 50px;
+            padding: 50px;
+            border: 10px solid yellow;
+        }
+
+    </style>
+</head>
+<body>
+
+
+<div class="box"></div>
+
+
+
+</body>
+</html>
+
+
+<script>
+
+    let box = document.querySelector(".box");
+    // offsetWidth:盒子的实际宽度（width+padding+boeder）
+    let res = box.offsetWidth;
+    // offsetHeight:盒子的实际高度
+    let res1 = box.offsetHeight;
+    // offsetTop:顶部距离有定位属性的父级元素的距离
+    let res2 = box.offsetTop;
+    // offsetLeft:左边距离有定位属性的父级元素的距离
+    let res3 = box.offsetLeft;
+    // window.innerWidth:获取窗口的内部宽度
+    let res4 = window.innerWidth;
+    // window.innerHeight:获取窗口的内部高度
+    let res5 = window.innerHeight;
+
+</script>
